@@ -11,7 +11,8 @@ import SwiftUI
 struct BeTheImpactApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView() // or ContentView(), depending on your setup
         }
     }
 }
+

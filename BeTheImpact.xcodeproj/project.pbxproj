@@ -11,6 +11,11 @@
 		BBC308E92D0B1064000A41B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC308E82D0B1064000A41B3 /* ContentView.swift */; };
 		BBC308EB2D0B1064000A41B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBC308EA2D0B1064000A41B3 /* Assets.xcassets */; };
 		BBC308EE2D0B1064000A41B3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBC308ED2D0B1064000A41B3 /* Preview Assets.xcassets */; };
+		BBC309132D0CE5D7000A41B3 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC309122D0CE5D7000A41B3 /* Home.swift */; };
+		BBC309152D0EEF38000A41B3 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC309142D0EEF38000A41B3 /* Food.swift */; };
+		BBC3091B2D138295000A41B3 /* Feelings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3091A2D138295000A41B3 /* Feelings.swift */; };
+		BBC3091D2D1387A4000A41B3 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3091C2D1387A4000A41B3 /* People.swift */; };
+		BBC3091F2D144652000A41B3 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3091E2D144652000A41B3 /* CategoryDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,11 @@
 		BBC308E82D0B1064000A41B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BBC308EA2D0B1064000A41B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBC308ED2D0B1064000A41B3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BBC309122D0CE5D7000A41B3 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		BBC309142D0EEF38000A41B3 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		BBC3091A2D138295000A41B3 /* Feelings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feelings.swift; sourceTree = "<group>"; };
+		BBC3091C2D1387A4000A41B3 /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
+		BBC3091E2D144652000A41B3 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +63,11 @@
 			children = (
 				BBC308E62D0B1064000A41B3 /* BeTheImpactApp.swift */,
 				BBC308E82D0B1064000A41B3 /* ContentView.swift */,
+				BBC309122D0CE5D7000A41B3 /* Home.swift */,
+				BBC309142D0EEF38000A41B3 /* Food.swift */,
+				BBC3091C2D1387A4000A41B3 /* People.swift */,
+				BBC3091A2D138295000A41B3 /* Feelings.swift */,
+				BBC3091E2D144652000A41B3 /* CategoryDetailView.swift */,
 				BBC308EA2D0B1064000A41B3 /* Assets.xcassets */,
 				BBC308EC2D0B1064000A41B3 /* Preview Content */,
 			);
@@ -138,7 +153,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBC308E92D0B1064000A41B3 /* ContentView.swift in Sources */,
+				BBC309152D0EEF38000A41B3 /* Food.swift in Sources */,
+				BBC309132D0CE5D7000A41B3 /* Home.swift in Sources */,
 				BBC308E72D0B1064000A41B3 /* BeTheImpactApp.swift in Sources */,
+				BBC3091D2D1387A4000A41B3 /* People.swift in Sources */,
+				BBC3091F2D144652000A41B3 /* CategoryDetailView.swift in Sources */,
+				BBC3091B2D138295000A41B3 /* Feelings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,8 +292,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BeTheImpact/Preview Content\"";
+				DEVELOPMENT_TEAM = LWMUSGAR69;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BeTheImpact;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -283,7 +306,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = w.BeTheImpact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -300,8 +323,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BeTheImpact/Preview Content\"";
+				DEVELOPMENT_TEAM = LWMUSGAR69;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BeTheImpact;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -311,7 +337,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = w.BeTheImpact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
