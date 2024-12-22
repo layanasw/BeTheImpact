@@ -1,17 +1,13 @@
-//
-//  BeTheImpactApp.swift
-//  BeTheImpact
-//
-//  Created by layan alwasaidi on 12/12/2024.
-//
-
 import SwiftUI
 
 @main
 struct BeTheImpactApp: App {
+    @StateObject private var appState = AppState() // Initialize AppState here
+
     var body: some Scene {
         WindowGroup {
-            MainView() // or ContentView(), depending on your setup
+            MainView()
+                .environmentObject(appState) // Pass AppState to the entire view hierarchy
         }
     }
 }

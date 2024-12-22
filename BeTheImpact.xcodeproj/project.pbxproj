@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0263B0B62D18C63F004AC015 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B0B52D18C635004AC015 /* MainView.swift */; };
+		0263B0BA2D18C680004AC015 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B0B92D18C67C004AC015 /* AppState.swift */; };
 		BBC308E72D0B1064000A41B3 /* BeTheImpactApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC308E62D0B1064000A41B3 /* BeTheImpactApp.swift */; };
 		BBC308E92D0B1064000A41B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC308E82D0B1064000A41B3 /* ContentView.swift */; };
 		BBC308EB2D0B1064000A41B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBC308EA2D0B1064000A41B3 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0263B0B52D18C635004AC015 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		0263B0B92D18C67C004AC015 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		BBC308E32D0B1064000A41B3 /* BeTheImpact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeTheImpact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBC308E62D0B1064000A41B3 /* BeTheImpactApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeTheImpactApp.swift; sourceTree = "<group>"; };
 		BBC308E82D0B1064000A41B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,7 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				BBC308E62D0B1064000A41B3 /* BeTheImpactApp.swift */,
+				0263B0B92D18C67C004AC015 /* AppState.swift */,
 				BBC308E82D0B1064000A41B3 /* ContentView.swift */,
+				0263B0B52D18C635004AC015 /* MainView.swift */,
 				BBC309122D0CE5D7000A41B3 /* Home.swift */,
 				BBC309142D0EEF38000A41B3 /* Food.swift */,
 				BBC3091C2D1387A4000A41B3 /* People.swift */,
@@ -153,7 +159,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBC308E92D0B1064000A41B3 /* ContentView.swift in Sources */,
+				0263B0B62D18C63F004AC015 /* MainView.swift in Sources */,
 				BBC309152D0EEF38000A41B3 /* Food.swift in Sources */,
+				0263B0BA2D18C680004AC015 /* AppState.swift in Sources */,
 				BBC309132D0CE5D7000A41B3 /* Home.swift in Sources */,
 				BBC308E72D0B1064000A41B3 /* BeTheImpactApp.swift in Sources */,
 				BBC3091D2D1387A4000A41B3 /* People.swift in Sources */,

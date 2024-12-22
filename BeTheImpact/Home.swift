@@ -1,26 +1,24 @@
-//
-//  Home.swift
-//  BeTheImpact
-//
-//  Created by layan alwasaidi on 14/12/2024.
-//
 import SwiftUI
-import UIKit
+import AVFAudio
 
 struct Home: View {
     @State private var isActionSheetPresented = false
     @State private var showImagePicker = false
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    @State private var categories: [(UIImage, String)] = [] // Dynamic buttons with images and captions
+    @State private var currentCategory: String? = nil // Keeps track of the selected category
     @State private var searchText: String = ""
+    @State private var isHomeView = true // Tracks whether the user is on the home screen
 
+    @EnvironmentObject var appState: AppState
+
+    private let speechSynthesizer = AVSpeechSynthesizer()
     let buttonSize: CGFloat = 100 // Button size
     let gridSpacing: CGFloat = 55 // Spacing between buttons
 
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                // Toolbar Section
+        VStack(spacing: 0) {
+            // Top Toolbar
+            if isHomeView {
                 HStack {
                     TextField("Search...", text: $searchText)
                         .padding(10)
@@ -56,172 +54,223 @@ struct Home: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 10)
+            }
 
-                // Unified Grid for All Buttons
+            if isHomeView {
+                // Home Screen: Display Categories
                 ScrollView {
                     LazyVGrid(columns: Array(repeating: GridItem(.fixed(buttonSize), spacing: gridSpacing), count: 3), spacing: gridSpacing) {
-                        // Static Buttons
                         ForEach(staticButtons(), id: \.id) { button in
                             button.view
                         }
-
-                        // Dynamic Buttons
-                        ForEach(categories.indices, id: \.self) { index in
-                            Button(action: {
-                                // Action for each dynamic button
-                                print("Dynamic button for \(categories[index].1) pressed")
-                            }) {
-                                VStack {
-                                    Image(uiImage: categories[index].0)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: buttonSize, height: buttonSize)
-                                    Text(categories[index].1)
-                                        .font(.headline)
-                                        .lineLimit(1)
+                    }
+                    .padding(.horizontal)
+                }
+                .background(Color(.systemBackground))
+            } else if let category = currentCategory {
+                // Category View: Display Cards
+                ScrollView {
+                    LazyVGrid(columns: Array(repeating: GridItem(.fixed(buttonSize), spacing: gridSpacing), count: 3), spacing: gridSpacing) {
+                        if let cards = appState.categoryCards[category] {
+                            ForEach(cards, id: \.0) { card in
+                                Button(action: {
+                                    selectCard(imageName: card.0, caption: card.1)
+                                }) {
+                                    cardView(imageName: card.0, caption: card.1)
                                 }
-                                .padding()
-                                .background(Color(.systemGray6))
-                                .cornerRadius(10)
-                                .shadow(radius: 2)
                             }
                         }
                     }
                     .padding(.horizontal)
                 }
                 .background(Color(.systemBackground))
-            }
-            .sheet(isPresented: $showImagePicker) {
-                ImagePicker(sourceType: sourceType) { image in
-                    promptForCaption(image: image)
+                .navigationTitle(category)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            isHomeView = true
+                            currentCategory = nil
+                        }) {
+                            Text("الرجوع")
+                        }
+                    }
                 }
+            }
+
+            // Bottom Sheet
+            if appState.isSheetExpanded {
+                bottomSheet()
+            }
+        }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(sourceType: sourceType) { image in
+                promptForCaption(image: image)
             }
         }
     }
 
-    // Static Buttons as IdentifiableView
+    // Static Buttons for Categories
     func staticButtons() -> [IdentifiableView] {
         [
             IdentifiableView(view: AnyView(
                 Button(action: {
-                    print("Button 1 pressed")
+                    currentCategory = "طعام"
+                    isHomeView = false
                 }) {
-                    VStack {
-                        Image("actvity")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: buttonSize, height: buttonSize)
-                        Text("أفعال")
-                            .font(.headline)
-                    }
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .shadow(radius: 2)
+                    categoryView(imageName: "food", caption: "طعام")
                 }
             )),
             IdentifiableView(view: AnyView(
                 Button(action: {
-                    print("Button 2 pressed")
+                    currentCategory = "مشاعر"
+                    isHomeView = false
                 }) {
-                    VStack {
-                        Image("chat")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: buttonSize, height: buttonSize)
-                        Text("محادثة")
-                            .font(.headline)
-                    }
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .shadow(radius: 2)
+                    categoryView(imageName: "feelings", caption: "مشاعر")
                 }
             )),
             IdentifiableView(view: AnyView(
                 Button(action: {
-                    print("Button 3 pressed")
+                    currentCategory = "أشخاص"
+                    isHomeView = false
                 }) {
-                    VStack {
-                        Image("baisc")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: buttonSize, height: buttonSize)
-                        Text("أساسيات")
-                            .font(.headline)
-                    }
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .shadow(radius: 2)
+                    categoryView(imageName: "people", caption: "أشخاص")
                 }
             )),
             IdentifiableView(view: AnyView(
-                NavigationLink(destination: Feelings()) {
-                    VStack {
-                        Image("fellings")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: buttonSize, height: buttonSize)
-                        Text("مشاعر")
-                            .font(.headline)
-                    }
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .shadow(radius: 2)
+                Button(action: {
+                    currentCategory = "أفعال"
+                    isHomeView = false
+                }) {
+                    categoryView(imageName: "activity", caption: "أفعال")
                 }
             )),
             IdentifiableView(view: AnyView(
-                NavigationLink(destination: Food()) {
-                    VStack {
-                        Image("Food")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: buttonSize, height: buttonSize)
-                        Text("طعام")
-                            .font(.headline)
-                    }
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .shadow(radius: 2)
+                Button(action: {
+                    currentCategory = "أساسيات"
+                    isHomeView = false
+                }) {
+                    categoryView(imageName: "basic", caption: "أساسيات")
                 }
             )),
             IdentifiableView(view: AnyView(
-                NavigationLink(destination: People()) {
-                    VStack {
-                        Image("pepole")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: buttonSize, height: buttonSize)
-                        Text("أشخاص")
-                            .font(.headline)
-                    }
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .shadow(radius: 2)
+                Button(action: {
+                    currentCategory = "محادثة"
+                    isHomeView = false
+                }) {
+                    categoryView(imageName: "chat", caption: "محادثة")
                 }
             ))
         ]
     }
-    
-    
 
-    // Handle Adding Dynamic Button
+    // Helper to Create a Category Button
+    private func categoryView(imageName: String, caption: String) -> some View {
+        VStack {
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: buttonSize, height: buttonSize)
+            Text(caption)
+                .font(.headline)
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(10)
+        .shadow(radius: 2)
+    }
+
+    // Helper to Create a Card View
+    private func cardView(imageName: String, caption: String) -> some View {
+        VStack {
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: buttonSize, height: buttonSize)
+            Text(caption)
+                .font(.headline)
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(10)
+        .shadow(radius: 2)
+    }
+
+    private func selectCard(imageName: String, caption: String) {
+        guard let image = UIImage(named: imageName) else { return }
+        appState.selectedCards.append((image, caption))
+        appState.isSheetExpanded = true
+        speak(caption)
+    }
+
+    private func bottomSheet() -> some View {
+        VStack {
+            Capsule()
+                .frame(width: 40, height: 5)
+                .foregroundColor(.gray.opacity(0.5))
+                .padding(.top, 10)
+
+            ScrollView(.horizontal) {
+                HStack(spacing: 20) {
+                    ForEach(appState.selectedCards, id: \.1) { card in
+                        VStack {
+                            Image(uiImage: card.0)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80, height: 80)
+                            Text(card.1)
+                                .font(.headline)
+                        }
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                        .shadow(radius: 2)
+                    }
+                }
+                .padding(.horizontal)
+            }
+
+            HStack {
+                Button(action: {
+                    readAllSelectedCards()
+                }) {
+                    Text("تشغيل")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+
+                Button(action: {
+                    appState.selectedCards.removeAll()
+                }) {
+                    Text("مسح")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.red)
+                        .cornerRadius(10)
+                }
+            }
+            .padding(.horizontal)
+        }
+        .background(Color(.systemBackground))
+        .cornerRadius(20)
+        .shadow(radius: 5)
+    }
+
     private func promptForCaption(image: UIImage) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "بطاقة رئيسية", message: "ادخل اسم للبطاقة الرئيسية", preferredStyle: .alert)
             alert.addTextField { textField in
-                textField.placeholder = "Category Name"
+                textField.placeholder = "اسم الفئة"
             }
-            alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
-                if let categoryName = alert.textFields?.first?.text, !categoryName.isEmpty {
-                    categories.append((image, categoryName))
+            alert.addAction(UIAlertAction(title: "إضافة", style: .default, handler: { _ in
+                if let caption = alert.textFields?.first?.text, !caption.isEmpty, let currentCategory = currentCategory {
+                    let imageName = "customImage-\(UUID().uuidString)"
+                    saveImageToAssets(image: image, withName: imageName)
+                    appState.categoryCards[currentCategory, default: []].append((imageName, caption)) // Save image name
                 }
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: "إلغاء", style: .cancel))
 
             if let rootViewController = UIApplication.shared.connectedScenes
                 .compactMap({ $0 as? UIWindowScene })
@@ -230,15 +279,26 @@ struct Home: View {
             }
         }
     }
+    // Helper function to save the image to the app's assets
+    private func saveImageToAssets(image: UIImage, withName name: String) {
+        guard let data = image.pngData(),
+              let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("\(name).png") else { return }
+        try? data.write(to: url)
+    }
+    private func speak(_ text: String) {
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "ar-SA")
+        utterance.rate = 0.5
+        speechSynthesizer.speak(utterance)
+    }
+
+    private func readAllSelectedCards() {
+        for card in appState.selectedCards {
+            speak(card.1)
+        }
+    }
 }
 
-// Wrapper for static buttons
-struct IdentifiableView: Identifiable {
-    let id = UUID()
-    let view: AnyView
-}
-
-// ImagePicker Struct
 struct ImagePicker: UIViewControllerRepresentable {
     var sourceType: UIImagePickerController.SourceType
     var onImageSelected: (UIImage) -> Void
@@ -278,7 +338,11 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 }
 
-// Preview
+struct IdentifiableView: Identifiable {
+    let id = UUID()
+    let view: AnyView
+}
 #Preview {
     Home()
+        .environmentObject(AppState()) // Inject the AppState environment object
 }
