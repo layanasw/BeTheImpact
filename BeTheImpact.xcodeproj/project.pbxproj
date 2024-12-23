@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0263B0B62D18C63F004AC015 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B0B52D18C635004AC015 /* MainView.swift */; };
 		0263B0BA2D18C680004AC015 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B0B92D18C67C004AC015 /* AppState.swift */; };
+		0263B0BC2D19E0B7004AC015 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B0BB2D19E0B1004AC015 /* Chat.swift */; };
+		0263B0BE2D19E108004AC015 /* places.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B0BD2D19E101004AC015 /* places.swift */; };
+		0263B0C02D19E12B004AC015 /* SentanceStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B0BF2D19E12B004AC015 /* SentanceStart.swift */; };
+		0263B0C22D19E13F004AC015 /* activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B0C12D19E13F004AC015 /* activity.swift */; };
+		0263B0C42D19F06B004AC015 /* Basics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B0C32D19F058004AC015 /* Basics.swift */; };
 		BBC308E72D0B1064000A41B3 /* BeTheImpactApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC308E62D0B1064000A41B3 /* BeTheImpactApp.swift */; };
 		BBC308E92D0B1064000A41B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC308E82D0B1064000A41B3 /* ContentView.swift */; };
 		BBC308EB2D0B1064000A41B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBC308EA2D0B1064000A41B3 /* Assets.xcassets */; };
@@ -23,6 +28,11 @@
 /* Begin PBXFileReference section */
 		0263B0B52D18C635004AC015 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0263B0B92D18C67C004AC015 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		0263B0BB2D19E0B1004AC015 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		0263B0BD2D19E101004AC015 /* places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = places.swift; sourceTree = "<group>"; };
+		0263B0BF2D19E12B004AC015 /* SentanceStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentanceStart.swift; sourceTree = "<group>"; };
+		0263B0C12D19E13F004AC015 /* activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = activity.swift; sourceTree = "<group>"; };
+		0263B0C32D19F058004AC015 /* Basics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basics.swift; sourceTree = "<group>"; };
 		BBC308E32D0B1064000A41B3 /* BeTheImpact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeTheImpact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBC308E62D0B1064000A41B3 /* BeTheImpactApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeTheImpactApp.swift; sourceTree = "<group>"; };
 		BBC308E82D0B1064000A41B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,8 +81,13 @@
 				0263B0B52D18C635004AC015 /* MainView.swift */,
 				BBC309122D0CE5D7000A41B3 /* Home.swift */,
 				BBC309142D0EEF38000A41B3 /* Food.swift */,
+				0263B0BB2D19E0B1004AC015 /* Chat.swift */,
+				0263B0BD2D19E101004AC015 /* places.swift */,
+				0263B0BF2D19E12B004AC015 /* SentanceStart.swift */,
+				0263B0C12D19E13F004AC015 /* activity.swift */,
 				BBC3091C2D1387A4000A41B3 /* People.swift */,
 				BBC3091A2D138295000A41B3 /* Feelings.swift */,
+				0263B0C32D19F058004AC015 /* Basics.swift */,
 				BBC3091E2D144652000A41B3 /* CategoryDetailView.swift */,
 				BBC308EA2D0B1064000A41B3 /* Assets.xcassets */,
 				BBC308EC2D0B1064000A41B3 /* Preview Content */,
@@ -158,15 +173,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0263B0C42D19F06B004AC015 /* Basics.swift in Sources */,
 				BBC308E92D0B1064000A41B3 /* ContentView.swift in Sources */,
+				0263B0C02D19E12B004AC015 /* SentanceStart.swift in Sources */,
 				0263B0B62D18C63F004AC015 /* MainView.swift in Sources */,
 				BBC309152D0EEF38000A41B3 /* Food.swift in Sources */,
+				0263B0BC2D19E0B7004AC015 /* Chat.swift in Sources */,
 				0263B0BA2D18C680004AC015 /* AppState.swift in Sources */,
 				BBC309132D0CE5D7000A41B3 /* Home.swift in Sources */,
 				BBC308E72D0B1064000A41B3 /* BeTheImpactApp.swift in Sources */,
+				0263B0BE2D19E108004AC015 /* places.swift in Sources */,
 				BBC3091D2D1387A4000A41B3 /* People.swift in Sources */,
 				BBC3091F2D144652000A41B3 /* CategoryDetailView.swift in Sources */,
 				BBC3091B2D138295000A41B3 /* Feelings.swift in Sources */,
+				0263B0C22D19E13F004AC015 /* activity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

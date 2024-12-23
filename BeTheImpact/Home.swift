@@ -130,6 +130,23 @@ struct Home: View {
             )),
             IdentifiableView(view: AnyView(
                 Button(action: {
+                    currentCategory = "اماكن"
+                    isHomeView = false
+                }) {
+                    categoryView(imageName: "places", caption: "اماكن")
+                }
+            )),
+            
+            IdentifiableView(view: AnyView(
+                Button(action: {
+                    currentCategory = "بدايه الجمله"
+                    isHomeView = false
+                }) {
+                    categoryView(imageName: "sentanceStart", caption: "بدايه الجمله")
+                }
+            )),
+            IdentifiableView(view: AnyView(
+                Button(action: {
                     currentCategory = "أشخاص"
                     isHomeView = false
                 }) {
@@ -138,7 +155,7 @@ struct Home: View {
             )),
             IdentifiableView(view: AnyView(
                 Button(action: {
-                    currentCategory = "أفعال"
+                    currentCategory = "افعال"
                     isHomeView = false
                 }) {
                     categoryView(imageName: "activity", caption: "أفعال")
@@ -154,7 +171,7 @@ struct Home: View {
             )),
             IdentifiableView(view: AnyView(
                 Button(action: {
-                    currentCategory = "محادثة"
+                    currentCategory = "محادثه"
                     isHomeView = false
                 }) {
                     categoryView(imageName: "chat", caption: "محادثة")
