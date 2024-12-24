@@ -6,11 +6,18 @@ class AppState: ObservableObject {
     @Published var categoryCards: [String: [(String, String)]] = [ // Change from 'let' to '@Published var'
         "طعام": [
             ("pizza", "بيتزا"),
-            ("sandwatch", "ساندوتش"),
+            ("sandwatch", "شطيرة"),
             ("juice", "عصير"),
             ("fruit", "فواكه"),
             ("rice", "ارز"),
-            ("sweet", "كيك")
+            ("sweet", "كيك"),
+            ("drink", "اشرب"),
+            ("eat", "اكل"),
+            ("iwant", "انا ابغى")
+
+
+
+
         ],
         "بدايه الجمله": [
             ("i want", "انا ابغى"),
