@@ -59,7 +59,7 @@ class AppState: ObservableObject {
             ("mama", "ماما"),
             ("baba", "بابا"),
             ("sister", "اختي"),
-            ("brother", "اخوي")
+            ("brother", "اخي")
         ],
         "أساسيات": [
             ("sad", "ساعدني"),

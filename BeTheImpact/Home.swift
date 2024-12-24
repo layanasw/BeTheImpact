@@ -59,9 +59,11 @@ struct Home: View {
             if isHomeView {
                 // Home Screen: Display Categories
                 ScrollView {
-                    LazyVGrid(columns: Array(repeating: GridItem(.fixed(buttonSize), spacing: gridSpacing), count: 3), spacing: gridSpacing) {
+                    LazyVGrid(columns: Array(repeating: GridItem(.fixed(buttonSize), spacing: gridSpacing), count: 4), spacing: gridSpacing
+                    ) {
                         ForEach(staticButtons(), id: \.id) { button in
                             button.view
+                                
                         }
                     }
                     .padding(.horizontal)
@@ -70,7 +72,7 @@ struct Home: View {
             } else if let category = currentCategory {
                 // Category View: Display Cards
                 ScrollView {
-                    LazyVGrid(columns: Array(repeating: GridItem(.fixed(buttonSize), spacing: gridSpacing), count: 3), spacing: gridSpacing) {
+                    LazyVGrid(columns: Array(repeating: GridItem(.fixed(buttonSize), spacing: gridSpacing), count: 4), spacing: gridSpacing) {
                         if let cards = appState.categoryCards[category] {
                             ForEach(cards, id: \.0) { card in
                                 Button(action: {
@@ -188,10 +190,12 @@ struct Home: View {
                 .scaledToFit()
                 .frame(width: buttonSize, height: buttonSize)
             Text(caption)
-                .font(.headline)
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundStyle(Color.black)
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color(.orange.opacity(0.5)))
         .cornerRadius(10)
         .shadow(radius: 2)
     }
@@ -205,9 +209,11 @@ struct Home: View {
                 .frame(width: buttonSize, height: buttonSize)
             Text(caption)
                 .font(.headline)
+                .fontWeight(.bold)
+                .foregroundStyle(Color.black)
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color(.blue.opacity(0.5)))
         .cornerRadius(10)
         .shadow(radius: 2)
     }
@@ -222,7 +228,7 @@ struct Home: View {
     private func bottomSheet() -> some View {
         VStack {
             Capsule()
-                .frame(width: 40, height: 5)
+                .frame(width: 40, height: 10)
                 .foregroundColor(.gray.opacity(0.5))
                 .padding(.top, 10)
 
@@ -233,7 +239,7 @@ struct Home: View {
                             Image(uiImage: card.0)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 80, height: 80)
+                                .frame(width: 100, height: 100)
                             Text(card.1)
                                 .font(.headline)
                         }
@@ -269,9 +275,11 @@ struct Home: View {
             }
             .padding(.horizontal)
         }
-        .background(Color(.systemBackground))
+        .background(Color(.blue.opacity(0.1)))
         .cornerRadius(20)
         .shadow(radius: 5)
+        
+        
     }
 
     private func promptForCaption(image: UIImage) {

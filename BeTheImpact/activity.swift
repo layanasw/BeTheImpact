@@ -1,11 +1,3 @@
-//
-//  activity.swift
-//  BeTheImpact
-//
-//  Created by Ranad aldawood on 22/06/1446 AH.
-//
-
-
 import SwiftUI
 import AVFAudio
 
