@@ -119,7 +119,7 @@ struct Home: View {
                     currentCategory = "طعام"
                     isHomeView = false
                 }) {
-                    categoryView(imageName: "Food", caption: "طعام")
+                    categoryView(imageName: "food", caption: "طعام")
                 }
             )),
             IdentifiableView(view: AnyView(
