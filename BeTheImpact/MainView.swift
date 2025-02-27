@@ -27,6 +27,7 @@ struct MainView: View {
                         withAnimation {
                             isActive = true
                         }
+                        
                     }
                 }
             }
